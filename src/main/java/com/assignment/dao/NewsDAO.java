@@ -234,4 +234,32 @@ public class NewsDAO implements DAO<News> {
 
         return newsList;
     }
+
+    public List<News> findNewsByUserId(String userId) {
+        String query = "EXECUTE dbo.FindNewsByUser ?";
+        List<News> newsList = new ArrayList<>();
+
+        try (ResultSet resultSet = JDBC.executeQuery(query, userId)){
+            while (resultSet.next()) {
+                News news = new News(
+                        resultSet.getString("Id"),
+                        resultSet.getString("Title"),
+                        resultSet.getString("content"),
+                        resultSet.getString("Image"),
+                        resultSet.getDate("PostedDate"),
+                        resultSet.getString("Author"),
+                        resultSet.getInt("ViewCount"),
+                        resultSet.getString("CategoryId"),
+                        resultSet.getBoolean("Home")
+                );
+
+                newsList.add(news);
+            }
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return newsList;
+    }
 }

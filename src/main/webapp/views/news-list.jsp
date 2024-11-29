@@ -3,7 +3,8 @@
 
 
 <div class="row">
-	<c:forEach items="${newsInHomeList}" var="news">
+	<h1>${message}</h1>
+	<c:forEach items="${newsList}" var="news">
 		<jsp:include page="/views/components/news.jsp">
 			<jsp:param name="id" value="${news.id}"/>
 			<jsp:param name="title" value="${news.title}"/>

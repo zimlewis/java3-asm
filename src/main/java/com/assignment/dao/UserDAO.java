@@ -120,4 +120,31 @@ public class UserDAO implements DAO<User> {
             throw new RuntimeException(e);
         }
     }
+
+
+    public User checkLogin(User user) {
+
+        String query = "EXECUTE dbo.ConfirmAuthentication ? , ?";
+
+        try (ResultSet resultSet = JDBC.executeQuery(query, user.getEmail(), user.getPassword())) {
+
+            if (resultSet.next()) {
+                user.setId(resultSet.getString("Id"));
+                user.setFullname(resultSet.getString("Fullname"));
+                user.setPassword(resultSet.getString("Password"));
+                user.setEmail(resultSet.getString("Email"));
+                user.setPhone(resultSet.getString("PhoneNumber"));
+                user.setRole(resultSet.getBoolean("Role"));
+                user.setGender(resultSet.getBoolean("Gender"));
+                user.setBirthday(resultSet.getDate("Birthday"));
+
+                return user;
+            }
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return null;
+    }
 }

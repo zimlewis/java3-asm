@@ -14,6 +14,7 @@
 	<c:url value="/news/1" var="news" />
 	<c:url value="/latest" var="latest" />
 	<c:url value="/most-viewed" var="mostViewed" />
+	<c:url value="/dashboard" var="dashboard"/>
 
 	<nav class="navbar navbar-expand-sm navbar-dark bg-black border-bottom-5">
 		<div class="container">
@@ -25,21 +26,32 @@
 					<li class="nav-item">
 						<a href="${home}" class="nav-link">Trang chủ</a>
 					</li>
-					<c:forEach items="${categories}" var="categoryObject">
-						<li class="nav-item">
-							<a href="${category}/${categoryObject.id}" class="nav-link">${categoryObject.name}</a>
-						</li>
-					</c:forEach>
-
+					<li class="nav-item">
+						<a href="${dashboard}" class="nav-link">Dashboard</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Chuyên mục
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<c:forEach items="${categories}" var="categoryObject">
+								<li class="nav-item">
+									<a href="${category}/${categoryObject.id}" class="dropdown-item">${categoryObject.name}</a>
+								</li>
+							</c:forEach>
+						</ul>
+					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
 
-	<div class="container-fluid mt-5">
+	<div class="container mt-5">
 		<div class="row">
-			<div class="col-lg-8" style="min-height: 500px"><jsp:include page="${page}" /></div>
+			<div class="col-lg-8" style="min-height: 500px">
+				<jsp:include page="${page}" />
+			</div>
 
 			<!-- Sidebar bên phải -->
 			<div class="col-lg-4">
