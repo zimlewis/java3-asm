@@ -8,6 +8,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
+
 	<c:url value="/" var="home" />
 	<c:url value="/category" var="category" />
 	<c:url value="/newsletter" var="newsletter" />
@@ -15,6 +16,8 @@
 	<c:url value="/latest" var="latest" />
 	<c:url value="/most-viewed" var="mostViewed" />
 	<c:url value="/dashboard" var="dashboard"/>
+	<c:url value="/" var="mainURL" />
+
 
 	<nav class="navbar navbar-expand-sm navbar-dark bg-black border-bottom-5">
 		<div class="container">
@@ -47,55 +50,67 @@
 	</nav>
 
 
+
 	<div class="container mt-5">
 		<div class="row">
-			<div class="col-lg-8" style="min-height: 500px">
-				<jsp:include page="${page}" />
-			</div>
-
-			<!-- Sidebar bên phải -->
-			<div class="col-lg-4">
-				<div class="sidebar p-3"
-					 style="background-color: #f8f9fa; border: 1px solid #d3d3d3; border-radius: 8px;">
-
-					<!-- 5 bản tin được xem nhiều -->
-					<div class="card mb-3">
-						<div class="card-header bg-primary text-white">
-							<a class="text-white" data-toggle="collapse" href="${mostViewed}"
-							   role="button" aria-expanded="false" aria-controls="popularNews">
-								5 bản tin được xem nhiều </a>
-						</div>
+			<c:choose>
+				<c:when test="${hideSideBar}">
+					<div class="col-lg-12" style="min-height: 500px">
+						<jsp:include page="${page}" />
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="col-lg-8" style="min-height: 500px">
+						<jsp:include page="${page}" />
 					</div>
 
-					<!-- 5 bản tin mới nhất -->
-					<div class="card mb-3">
-						<div class="card-header bg-success text-white">
-							<a class="text-white" data-toggle="collapse" href="${latest}"
-							   role="button" aria-expanded="false" aria-controls="latestNews">
-								5 bản tin mới nhất </a>
+					<!-- Sidebar bên phải -->
+					<div class="col-lg-4">
+						<div class="sidebar p-3"
+							 style="background-color: #f8f9fa; border: 1px solid #d3d3d3; border-radius: 8px;">
+
+							<!-- 5 bản tin được xem nhiều -->
+							<div class="card mb-3">
+								<div class="card-header bg-primary text-white">
+									<a class="text-white" data-toggle="collapse" href="${mostViewed}"
+									   role="button" aria-expanded="false" aria-controls="popularNews">
+										5 bản tin được xem nhiều </a>
+								</div>
+							</div>
+
+							<!-- 5 bản tin mới nhất -->
+							<div class="card mb-3">
+								<div class="card-header bg-success text-white">
+									<a class="text-white" data-toggle="collapse" href="${latest}"
+									   role="button" aria-expanded="false" aria-controls="latestNews">
+										5 bản tin mới nhất </a>
+								</div>
+							</div>
+
+							<!-- 5 bản tin đã bạn đã xem -->
+								<%--					<div class="card mb-3">--%>
+								<%--						<div class="card-header bg-warning text-white">--%>
+								<%--							<a class="text-white" data-toggle="collapse" href=""--%>
+								<%--							   role="button" aria-expanded="false" aria-controls="viewedNews">--%>
+								<%--								5 bản tin đã bạn đã xem </a>--%>
+								<%--						</div>--%>
+								<%--					</div>--%>
+
+							<!-- Newsletter -->
+							<div class="card">
+								<div class="card-header bg-secondary text-white">
+									<a class="text-white" data-toggle="collapse" href="${newsletter}"
+									   role="button" aria-expanded="false" aria-controls="newsletter">
+										Newsletter </a>
+								</div>
+							</div>
+
 						</div>
 					</div>
+				</c:otherwise>
+			</c:choose>
 
-					<!-- 5 bản tin đã bạn đã xem -->
-<%--					<div class="card mb-3">--%>
-<%--						<div class="card-header bg-warning text-white">--%>
-<%--							<a class="text-white" data-toggle="collapse" href=""--%>
-<%--							   role="button" aria-expanded="false" aria-controls="viewedNews">--%>
-<%--								5 bản tin đã bạn đã xem </a>--%>
-<%--						</div>--%>
-<%--					</div>--%>
 
-					<!-- Newsletter -->
-					<div class="card">
-						<div class="card-header bg-secondary text-white">
-							<a class="text-white" data-toggle="collapse" href="${newsletter}"
-							   role="button" aria-expanded="false" aria-controls="newsletter">
-								Newsletter </a>
-						</div>
-					</div>
-
-				</div>
-			</div>
 
 		</div>
 	</div>

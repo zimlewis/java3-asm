@@ -7,7 +7,7 @@
 	<div class="card-body">
 		<h5 class="card-title">${news.title}</h5>
 		<p class="text-muted mb-2">${news.postedDate} • ${news.viewCount} lượt xem</p>
-		<p>${news.content}</p>
+		<p class="text-truncate">${news.content}</p>
 		<div class="row">
 			<c:forEach items="${newsInCategory}" var="newsCategory">
 				<c:if test="${newsCategory.id != news.id}">

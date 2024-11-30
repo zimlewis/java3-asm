@@ -7,13 +7,12 @@
 --%>
 
 
-<%@ page contentType="text/html;charset=UTF-8;" pageEncoding="UTF-8" isELIgnored="false" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
 	String id = request.getParameter("id");
 	String image = request.getParameter("image");
-    System.out.println(image);
 	request.setAttribute("id", id);
 	request.setAttribute("image", image);
 %>
@@ -45,7 +44,10 @@
 					</h5>
 					<p class="text-muted"><%= request.getParameter("postedDate")%> • <%= request.getParameter("viewCount")%> lượt xem</p>
 					<p class="card-text">
+						<div class="d-inline-block text-truncate w-100">
 						<%= request.getParameter("content")%>
+						</div>
+
 					</p>
 				</div>
 			</div>

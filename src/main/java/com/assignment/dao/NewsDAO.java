@@ -68,6 +68,26 @@ public class NewsDAO implements DAO<News> {
         return null;
     }
 
+    public void postNews(News news) {
+        String id = String.valueOf(findAll().size());
+        String title = news.getTitle();
+        String content = news.getContent();
+        String image = news.getImage();
+        Date postedDate = new Date();
+        String author = news.getAuthor();
+        Integer viewCount = 0;
+        String categoryId = news.getCategoryId();
+        Boolean home = false;
+
+        String query = "INSERT INTO [dbo].[News] ([Id], [Title], [Content], [Image], [PostedDate], [Author], [ViewCount], [CategoryId], [Home]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try{
+            JDBC.executeUpdate(query, id, title, content, image, postedDate, author, viewCount, categoryId, home);
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public void create(News news) {
         String id = news.getId();

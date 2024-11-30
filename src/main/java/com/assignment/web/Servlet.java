@@ -84,9 +84,18 @@ public class Servlet extends HttpServlet {
                 return;
             }
 
+            if (user.getRole()){
+                request.setAttribute("newsList", newsDAO.findAll());
+                request.setAttribute("userList", userDAO.findAll());
+                request.setAttribute("categoryList", categoryDAO.findAll());
+                request.setAttribute("newsletterList", newsletterDAO.findAll());
+            }
+            else {
+                request.setAttribute("newsList", newsDAO.findNewsByUserId(user.getId()));
+            }
 
             request.setAttribute("user", user);
-            request.setAttribute("newsList", newsDAO.findNewsByUserId(user.getId()));
+            request.setAttribute("hideSideBar", true);
             page = "/views/dashboard.jsp";
         } else if (request.getServletPath().equals("/login")) {
             HttpSession session = request.getSession(false);
@@ -97,9 +106,6 @@ public class Servlet extends HttpServlet {
             }
             page = "/views/components/login.jsp";
         }
-
-
-
 
         request.setAttribute("page", page);
 

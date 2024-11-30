@@ -21,6 +21,8 @@ public class NewsletterDAO implements DAO<Newsletter> {
                         resultSet.getString("Email"),
                         resultSet.getBoolean("Enable")
                 );
+
+                newsletters.add(newsletter);
             }
         }
         catch (SQLException e) {
