@@ -13,6 +13,7 @@
 <c:url value="components/forms/newsletter.jsp" var="newsletterForm" />
 <c:url value="components/forms/news.jsp" var="newsForm" />
 <c:url value="components/forms/category.jsp" var="categoryForm" />
+<c:url value="/news/post" var="upload" />
 
 <div class="row">
 

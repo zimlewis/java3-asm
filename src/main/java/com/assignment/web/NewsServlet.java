@@ -49,6 +49,9 @@ public class NewsServlet extends HttpServlet {
         HttpSession session = req.getSession();
         UserDAO userDAO = new UserDAO();
         User user = null;
+
+        System.out.println(session.getAttribute("user"));
+
         if (session.getAttribute("user") != null) {
             user = userDAO.find(session.getAttribute("user").toString());
         }

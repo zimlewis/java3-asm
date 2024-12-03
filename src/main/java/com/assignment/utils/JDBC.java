@@ -9,8 +9,8 @@ import java.sql.SQLException;
 public class JDBC {
     static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     static String dburl = "jdbc:sqlserver://localhost;databaseName=Java4Asm;encrypt=false";
-    static String username = "Zimlewis";
-    static String password = "Daylazim123!";
+    static String username = "sa2";
+    static String password = "Duc130906";
 
     static {
         try { // nạp driver

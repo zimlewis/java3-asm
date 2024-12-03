@@ -13,7 +13,7 @@
 		<button class="btn btn-primary">Subscribe</button>
 	</form>
 	<br>
-	<div class="alert alert-info">Something is wrong</div>
+	<div class="alert alert-info">${newsletterMessage}</div>
 </div>
 </body>
 </html>

@@ -25,7 +25,7 @@
 	<!-- Submit Button -->
 	<button formaction="${mainURL}category/create" class="btn btn-info" type="submit">Create</button>
 	<button formaction="${mainURL}category/update" class="btn btn-success" type="submit">Update</button>
-	<button formaction="${mainURL}ategory/delete" class="btn btn-danger" type="submit">Delete</button>
+	<button formaction="${mainURL}category/delete" class="btn btn-danger" type="submit">Delete</button>
 	<button type="reset" class="btn btn-secondary">Reset</button>
 </form>
 

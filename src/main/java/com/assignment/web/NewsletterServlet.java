@@ -1,5 +1,6 @@
 package com.assignment.web;
 
+
 import com.assignment.dao.NewsletterDAO;
 import com.assignment.entity.Category;
 import com.assignment.entity.Newsletter;
@@ -12,6 +13,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.converters.DateConverter;
 import org.apache.commons.beanutils.converters.DateTimeConverter;
+import com.assignment.entity.Mailer;
 
 import java.io.IOException;
 import java.util.Date;
@@ -48,6 +50,20 @@ public class NewsletterServlet extends HttpServlet {
             BeanUtils.populate(newsletter, req.getParameterMap());
 
             dao.create(newsletter);
+
+            String from = "ductats00511@fpt.edu.vn"; // Predefined service address
+            String subject = "Subscription Successful";
+            String body = "<h1>Thank you for subscribing!</h1><p>We’re excited to have you on board.</p>";
+
+            String to = newsletter.getEmail();
+
+            int error = Mailer.send(from, to, subject, body);
+
+            if (error < 0) {
+                req.setAttribute("newsletterMessage", "Error sending the email. Please try again.");
+            } else {
+                req.setAttribute("newsletterMessage", "Subscription email sent successfully!");
+            }
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
@@ -68,6 +84,8 @@ public class NewsletterServlet extends HttpServlet {
             BeanUtils.populate(newsletter, req.getParameterMap());
 
             dao.update(newsletter);
+
+
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
